@@ -7,7 +7,9 @@
 
 from gnuradio import digital
 from gnuradio import gr
-from gnuradio.filter import firdes
+from gnuradio import blocks
+from gnuradio import analog
+import gnuradio
 
 class wmbus_demod(gr.hier_block2):
 
@@ -34,11 +36,11 @@ class wmbus_demod(gr.hier_block2):
 		##################################################
 		# Blocks
 		##################################################
-		self.low_pass_filter_0 = gr.fir_filter_ccf(1, firdes.low_pass(
-			1, samp_rate, cutoff, cutoff/2, firdes.WIN_HAMMING, 6.76))
-		self.gr_sub_xx_0 = gr.sub_ff(1)
-		self.gr_single_pole_iir_filter_xx_0 = gr.single_pole_iir_filter_ff(0.0512/samp_per_sym, 1)
-		self.gr_quadrature_demod_cf_0 = gr.quadrature_demod_cf(1)
+		self.low_pass_filter_0 = gnuradio.filter.fir_filter_ccf(1, gnuradio.filter.firdes.low_pass(
+			1, samp_rate, cutoff, cutoff/2, gnuradio.filter.firdes.WIN_HAMMING, 6.76))
+		self.gr_sub_xx_0 = blocks.sub_ff(1)
+		self.gr_single_pole_iir_filter_xx_0 = gnuradio.filter.single_pole_iir_filter_ff(0.0512/samp_per_sym, 1)
+		self.gr_quadrature_demod_cf_0 = analog.quadrature_demod_cf(1)
 		self.digital_clock_recovery_mm_xx_0 = digital.clock_recovery_mm_ff(samp_per_sym*(1+freq_error), .25 *0.06*0.06*4, 0.5, 0.06*2, 0.002*2)
 		self.digital_binary_slicer_fb_0 = digital.binary_slicer_fb()
 
@@ -60,7 +62,8 @@ class wmbus_demod(gr.hier_block2):
 	def set_samp_rate(self, samp_rate):
 		self.samp_rate = samp_rate
 		self.set_chip_rate(self.samp_rate/self.samp_per_sym)
-		self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cutoff, self.cutoff/2, firdes.WIN_HAMMING, 6.76))
+		self.low_pass_filter_0.set_taps(gnuradio.filter.firdes.low_pass(1, self.samp_rate, self.cutoff, self.cutoff/2,
+            gnuradio.filter.firdes.WIN_HAMMING, 6.76))
 
 	def get_samp_per_sym(self):
 		return self.samp_per_sym
@@ -83,7 +86,8 @@ class wmbus_demod(gr.hier_block2):
 
 	def set_cutoff(self, cutoff):
 		self.cutoff = cutoff
-		self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, self.cutoff, self.cutoff/2, firdes.WIN_HAMMING, 6.76))
+		self.low_pass_filter_0.set_taps(gnuradio.filter.firdes.low_pass(1, self.samp_rate, self.cutoff, self.cutoff/2,
+            gnuradio.filter.firdes.WIN_HAMMING, 6.76))
 
 	def get_chip_rate(self):
 		return self.chip_rate

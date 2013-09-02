@@ -6,12 +6,13 @@ import numpy
 from numpy.numarray.functions import ones
 from optparse import OptionParser
 from gnuradio import gr 
-from gnuradio.extras import block_gateway
+from gnuradio import blocks
+from gnuradio.gr import block_gateway
 from gnuradio import digital
 from gnuradio.digital import packet_utils
 from gnuradio.eng_option import eng_option
-from gruel.pmt.pmt_swig import pmt_print
-from gnuradio.extras.extras_swig import pmt_symbol_to_string
+# from gruel.pmt.pmt_swig import pmt_print
+from pmt import symbol_to_string
 import gnuradio.gr.gr_threading as _threading
 import osmosdr
 import crcmod.predefined
@@ -150,9 +151,9 @@ class wmbus_rx(gr.top_block):
         self.chip_error_threshold = 10
 
         if None != filename:
-            self.source = gr.file_source(gr.sizeof_gr_complex, filename)
+            self.source = blocks.file_source(gr.sizeof_gr_complex, filename)
         else:
-            self.source = osmosdr.source_c( args="nchan=" + str(1) + " " + "" )
+            self.source = osmosdr.source( args="nchan=" + str(1) + " " + "" )
             #print self.source.get_gain_range().to_pp_string()
             self.source.set_sample_rate(1.6e6)
             self.source.set_center_freq(868.95e6, 0)
@@ -163,7 +164,7 @@ class wmbus_rx(gr.top_block):
             self.source.set_if_gain(42, 0)
 
         if None != capture:
-            self.sink = gr.file_sink(gr.sizeof_gr_complex, capture)
+            self.sink = blocks.file_sink(gr.sizeof_gr_complex, capture)
         else:
             self.msgq = gr.msg_queue(4)
             self.sink = wmbus_phy1(msgq=self.msgq, verbose=verbose, freq_error=freq_error);
