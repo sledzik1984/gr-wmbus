@@ -22,7 +22,7 @@
 #ifndef INCLUDED_WMBUS_API_H
 #define INCLUDED_WMBUS_API_H
 
-#include <gruel/attributes.h>
+#include <gnuradio/attributes.h>
 
 #ifdef gnuradio_wmbus_EXPORTS
 #  define WMBUS_API __GR_ATTR_EXPORT
