@@ -61,10 +61,10 @@
     </param>
   </block>
   <block>
-    <key>gr_complex_to_mag_squared</key>
+    <key>blocks_complex_to_mag_squared</key>
     <param>
       <key>id</key>
-      <value>gr_complex_to_mag_squared_0</value>
+      <value>blocks_complex_to_mag_squared_0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -532,7 +532,7 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>gr_complex_to_mag_squared_0</source_block_id>
+    <source_block_id>blocks_complex_to_mag_squared_0</source_block_id>
     <sink_block_id>gr_nlog10_ff_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -551,7 +551,7 @@
   </connection>
   <connection>
     <source_block_id>pad_source_0</source_block_id>
-    <sink_block_id>gr_complex_to_mag_squared_0</sink_block_id>
+    <sink_block_id>blocks_complex_to_mag_squared_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
