@@ -2,13 +2,13 @@
 
 import numpy
 from gnuradio import gr 
-from gnuradio.extras import block_gateway
+from gnuradio.gr import block_gateway
 from gnuradio import digital
 from gnuradio.digital import packet_utils
 from optparse import OptionParser
 from gnuradio.eng_option import eng_option
-from gruel.pmt.pmt_swig import pmt_print
-from gnuradio.extras.extras_swig import pmt_symbol_to_string
+#from gruel.pmt.pmt_swig import pmt_print
+from pmt import symbol_to_string
 from numpy.numarray.functions import ones
 
 class correlate_preamble(gr.hier_block2): 
@@ -70,7 +70,7 @@ class framer(gr.block):
         #    print (nread+ff, input_items[0][ff], input_items[1][ff])
         #    for tag in tags:
         #        if tag.offset == nread+ff:
-        #            print pmt_symbol_to_string(tag.key)
+        #            print symbol_to_string(tag.key)
 
         #work stuff here...
         pos_read = 0;
@@ -81,7 +81,7 @@ class framer(gr.block):
             pos_read = pos_read_end
             
             # state change
-            tag_key = pmt_symbol_to_string(tag.key)
+            tag_key = symbol_to_string(tag.key)
             if self.debug: print tag_key
             if tag_key == "preamble":
                 self.state = 1

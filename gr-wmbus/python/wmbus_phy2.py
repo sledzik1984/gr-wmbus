@@ -8,8 +8,9 @@
 from gnuradio import digital
 from gnuradio import eng_notation
 from gnuradio import gr
+from gnuradio import blocks
 from gnuradio.eng_option import eng_option
-from gnuradio.gr import firdes
+from gnuradio.filter import firdes
 from optparse import OptionParser
 
 class wmbus_phy2(gr.top_block):
@@ -25,11 +26,11 @@ class wmbus_phy2(gr.top_block):
 		##################################################
 		# Blocks
 		##################################################
-		self.gr_vector_source_x_0 = gr.vector_source_b((frame), False, 1)
-		self.gr_vector_sink_x_1 = gr.vector_sink_b(1)
-		self.gr_vector_sink_x_0 = gr.vector_sink_b(1)
-		self.gr_unpacked_to_packed_xx_0 = gr.unpacked_to_packed_bb(4, gr.GR_MSB_FIRST)
-		self.gr_pack_k_bits_bb_0 = gr.pack_k_bits_bb(6)
+		self.gr_vector_source_x_0 = blocks.vector_source_b((frame), False, 1)
+		self.gr_vector_sink_x_1 = blocks.vector_sink_b(1)
+		self.gr_vector_sink_x_0 = blocks.vector_sink_b(1)
+		self.gr_unpacked_to_packed_xx_0 = blocks.unpacked_to_packed_bb(4, gr.GR_MSB_FIRST)
+		self.gr_pack_k_bits_bb_0 = blocks.pack_k_bits_bb(6)
 		self.digital_map_bb_1 = digital.map_bb(([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]))
 		self.digital_map_bb_0 = digital.map_bb(([16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 3, 16, 1, 2, 16, 16, 16, 16, 7, 16, 16, 0, 16, 16, 5, 6, 16, 4, 16, 16, 16, 16, 16, 16, 11, 16, 9, 10, 16, 16, 15, 16, 16, 8, 16, 16, 16, 16, 13, 14, 16, 12, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16]))
 

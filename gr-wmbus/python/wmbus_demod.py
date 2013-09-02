@@ -7,7 +7,7 @@
 
 from gnuradio import digital
 from gnuradio import gr
-from gnuradio.gr import firdes
+from gnuradio.filter import firdes
 
 class wmbus_demod(gr.hier_block2):
 
