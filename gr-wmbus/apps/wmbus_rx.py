@@ -3,7 +3,7 @@
 import struct
 from array import array
 import numpy
-from numpy.numarray.functions import ones
+from numpy import ones
 from optparse import OptionParser
 from gnuradio import gr 
 from gnuradio import blocks
@@ -153,7 +153,7 @@ class wmbus_rx(gr.top_block):
         if None != filename:
             self.source = blocks.file_source(gr.sizeof_gr_complex, filename)
         else:
-            self.source = osmosdr.source( args="nchan=" + str(1) + " " + "" )
+            self.source = osmosdr.source()
             #print self.source.get_gain_range().to_pp_string()
             self.source.set_sample_rate(1.6e6)
             self.source.set_center_freq(868.95e6, 0)
