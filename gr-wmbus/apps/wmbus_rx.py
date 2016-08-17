@@ -158,7 +158,7 @@ class wmbus_rx(gr.top_block):
             self.source.set_sample_rate(1.6e6)
             self.source.set_center_freq(868.95e6, 0)
             self.source.set_freq_corr(0, 0)
-            self.source.set_gain_mode(0, 0)
+            self.source.set_gain_mode(True, 0)
             # -1.0 1.5 4.0 6.5 9.0 11.5 14.0 16.5 19.0 21.5 24.0 29.0 34.0 42.0
             self.source.set_gain(14, 0)
             self.source.set_if_gain(42, 0)
